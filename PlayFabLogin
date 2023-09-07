@@ -1,0 +1,30 @@
+using PlayFab;
+using PlayFab.ClientModels;
+using UnityEngine;
+
+public class PlayFabLogin : MonoBehaviour
+{
+    public void Start()
+    {
+        //var request = new LoginWithCustomIDRequest { CustomId = "easykid", CreateAccount = true};
+        //PlayFabClientAPI.LoginWithCustomID(request, OnLoginSuccess, OnLoginFailure);
+        LoginEmail();
+    }
+
+    public void LoginEmail()
+    {
+        var request = new LoginWithEmailAddressRequest { Email = "quexafaf@gmail.com", Password = "easykid1"};
+        PlayFabClientAPI.LoginWithEmailAddress(request, OnLoginSuccess, OnLoginFailure);
+    }
+
+    private void OnLoginSuccess(LoginResult result)
+    {
+        Debug.Log("********* LOGIN OK ***********");
+    }
+
+    private void OnLoginFailure(PlayFabError error)
+    {
+        Debug.LogWarning(" --- ERROR EN LOGIN --- ");
+        Debug.LogError(error.GenerateErrorReport());
+    }
+}
